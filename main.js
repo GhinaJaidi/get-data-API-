@@ -61,7 +61,16 @@ const displayProducts = async () => {
 }
 displayProducts();
 
-const getCategories = () => {
+document.querySelector(".products").addEventListener("click", (e) => {
+    const btn = e.target.closest('[data-action="view-details"]');
+    if (!btn) return;
+
+    const card = btn.closest(".product-card");
+    const id = card.dataset.productId;
+    window.location.href = `details.html?id=${id}`;
+})
+
+const getCategories = async () => {
     const response = axios.get('https://dummyjson.com/products/categories')
     return response;
 }
